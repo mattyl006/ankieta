@@ -11,7 +11,6 @@ const App = () => {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <NavBar />
-
           <Routes>
             <Route path='/next-page' element={<NextPage/>}/>
             <Route exact path='/' element={<StartPage/>}/>

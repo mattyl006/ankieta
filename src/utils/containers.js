@@ -27,6 +27,7 @@ const Container = styled.div`
   opacity: ${({opacity}) => opacity ? opacity : '1'};
   transform: translate(${({translateX}) => translateX ? translateX : 0}, ${({translateY}) => translateY ? translateY : 0});
   order: ${({order}) => order ? order : '0'};
+  z-index: ${({zIndex}) => zIndex ? zIndex : '0'};
 `;
 
 const FlexRow = styled(Container)`
@@ -66,7 +67,6 @@ const TransBack = styled(FlexRow)`
   height: 100vh;
   transition: ${({transition}) => transition ? transition : 'opacity'} ${({animTime}) => animTime ? animTime : '0.3s'} ease-in-out;
   background-color: ${({backgroundColor}) => backgroundColor ? backgroundColor : 'transparent'};
-  z-index: 4;
 `;
 
 const ImageBackground = styled(FlexColumn)`
