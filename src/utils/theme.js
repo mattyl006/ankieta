@@ -5,7 +5,7 @@ const theme = {
     overMobile: '768px',
     mobile: '(max-width: 768px)',
     desktop: '(min-width: 769px)',
-    shadow: '1px 2px 4px rgba(52, 52, 52, 0.25)',
+    shadow: '1px 2px 4px rgba(0, 16, 33, 0.25)',
 };
 
 export default theme;
