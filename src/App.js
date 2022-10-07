@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {ThemeProvider} from 'styled-components';
+import theme from './utils/theme';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import React from 'react';
+import NextPage from "./pages/NextPage";
+import StartPage from "./pages/StartPage";
+import NavBar from "./components/elements/NavBar";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <NavBar />
+
+          <Routes>
+            <Route path='/next-page' element={<NextPage/>}/>
+            <Route exact path='/' element={<StartPage/>}/>
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
   );
-}
+};
 
 export default App;
