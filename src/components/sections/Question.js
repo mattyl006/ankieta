@@ -20,7 +20,8 @@ const Question = (props) => {
                                  id={option.id} name={option.name} backgroundColor={'#fff'}
                                  border={`1px solid ${theme.colors.dark}`} 
                                  margin={props.type === 'number' ? '2px 0 0 0' : '0'} 
-                                 as='input' type={props.type} onChange={(e) => props.onChange(e)}/>
+                                 as='input' type={props.type} 
+                                 onChange={(e) => props.updateState(e)}/>
                         <Body id={option.id} htmlFor={option.id} as='label'>
                             {option.text}
                         </Body>
