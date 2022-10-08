@@ -43,7 +43,7 @@ const PatientsList = () => {
                 return (
                 <tr>
                     <td style={{paddingRight: '35px'}}>
-                         <Link to="/">
+                         <Link to={"/filled-form/" + key.toString()}>
                          {list[key]["userId"]} 
                          </Link>
                         </td>
@@ -68,7 +68,7 @@ const PatientsList = () => {
                     <th>Nazwisko</th>
                 </tr>
                 {renderList()}
-                </table>
+            </table>
         </FlexColumn>
     );
 };

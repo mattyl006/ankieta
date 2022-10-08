@@ -5,6 +5,7 @@ import React from 'react';
 import NextPage from "./pages/NextPage";
 import StartPage from "./pages/StartPage";
 import PatientsList from './pages/PatientsList';
+import FilledForm from './pages/FilledForm'
 // import NavBar from "./components/elements/NavBar";
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
             <Route path='/next-page' element={<NextPage/>}/>
             <Route exact path='/' element={<StartPage/>}/>
             <Route path="/patients-list" element={<PatientsList/>} />
-            <Route path="/patients-list" element={<PatientsList/>} />
+            <Route path="/filled-form/:id" element={<FilledForm/>} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>
