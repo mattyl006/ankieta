@@ -49,7 +49,7 @@ const StartPage = () => {
         return response.json(); // parses JSON response into native JavaScript objects
     }
     const sendAnswers = () => {
-        console.log(postData('localhost:8080', formState));
+        console.log(postData('http://127.0.0.1:8000/model', formState));
     }
     return (
         <FlexColumn width='100%' gap='36px'>
