@@ -6,15 +6,15 @@ import Question from '../components/sections/Question';
 
 const StartPage = () => {
     const [formState, setFormState] = React.useState({
-        plec: 0,
-        zw: 0,
-        serceChor: 0,
-        nadCis: 0,
-        miejsceZam: 0,
-        wiek: 0,
-        waga: 0,
-        wzrost: 0,
-        pozCukr: 0,
+        isMale: 0,
+        ever_married: 0,
+        heart_disease: 0,
+        hypertension: 0,
+        is_urban: 0,
+        age: 0,
+        weight: 0,
+        height: 0,
+        avg_glucose_level: 0,
     });
     const updateState = (event) => {
         let newState = {...formState};
@@ -63,32 +63,32 @@ const StartPage = () => {
                 <Question type='radio' updateState={updateState}
                     title='1. Płeć' 
                     options={[
-                        {text: 'Kobieta', id: 'plec1', name: 'plec'},
-                        {text: 'Mężczyzna', id: 'plec2', name: 'plec'},
+                        {text: 'Kobieta', id: 'isMale1', name: 'isMale'},
+                        {text: 'Mężczyzna', id: 'isMale2', name: 'isMale'},
                     ]} />
                 <Question type='radio' updateState={updateState}
                     title='2. Czy jesteś w związku?' 
                     options={[
-                        {text: 'Nie', id: 'zw1', name: 'zw'},
-                        {text: 'Tak', id: 'zw2', name: 'zw'},
+                        {text: 'Nie', id: 'ever_married1', name: 'ever_married'},
+                        {text: 'Tak', id: 'ever_married2', name: 'ever_married'},
                     ]} />
                 <Question type='radio' updateState={updateState}
                     title='3. Czy chorował/a Pan/Pani na serce?' 
                     options={[
-                        {text: 'Nie', id: 'serceChor1', name: 'serceChor'},
-                        {text: 'Tak', id: 'serceChor2', name: 'serceChor'},
+                        {text: 'Nie', id: 'heart_disease1', name: 'heart_disease'},
+                        {text: 'Tak', id: 'heart_disease2', name: 'heart_disease'},
                     ]} />
                 <Question type='radio' updateState={updateState}
                     title='4. Nadcisnienie' 
                     options={[
-                        {text: 'Nie', id: 'nadCis1', name: 'nadCis'},
-                        {text: 'Tak', id: 'nadCis2', name: 'nadCis'},
+                        {text: 'Nie', id: 'hypertension1', name: 'hypertension'},
+                        {text: 'Tak', id: 'hypertension2', name: 'hypertension'},
                     ]} />
                 <Question type='radio' updateState={updateState}
                     title='5. Miejsce zamieszkania' 
                     options={[
-                        {text: 'Wieś', id: 'miejsceZam1', name: 'miejsceZam'},
-                        {text: 'Miasto', id: 'miejsceZam2', name: 'miejsceZam'},
+                        {text: 'Wieś', id: 'is_urban1', name: 'is_urban'},
+                        {text: 'Miasto', id: 'is_urban2', name: 'is_urban'},
                 ]} />
             </FlexColumn>
             <FlexColumn as='section' alignmentX='flex-start' gap='36px'>
@@ -98,22 +98,22 @@ const StartPage = () => {
                 <Question type='number' updateState={updateState}
                     title='6. Ile masz lat?' 
                     options={[
-                        {text: 'Wiek:', id: 'wiek', name: 'wiek'},
+                        {text: 'Wiek:', id: 'age', name: 'age'},
                 ]} />
                 <Question type='number' updateState={updateState}
                     title='7. Podaj swoją wagę' 
                     options={[
-                        {text: 'Waga:', id: 'waga', name: 'waga'},
+                        {text: 'Waga:', id: 'weight', name: 'weight'},
                 ]} />
                 <Question type='number' updateState={updateState}
                     title='8. Podaj swój wzrost' 
                     options={[
-                        {text: 'Wzrost:', id: 'wzrost', name: 'wzrost'},
+                        {text: 'Wzrost:', id: 'height', name: 'height'},
                 ]} />
                 <Question type='number' updateState={updateState}
                     title='9. Średni poziom cukru we krwi' 
                     options={[
-                        {text: 'Poziom cukru:', id: 'pozCukr', name: 'pozCukr'},
+                        {text: 'Poziom cukru:', id: 'avg_glucose_level', name: 'avg_glucose_level'},
                 ]} />
             </FlexColumn>
             <FlexRow margin='32px 0 0 0' backgroundColor={theme.colors.brand} 
