@@ -1,7 +1,7 @@
 const colors = {
-    light: '#E3D7FF',
-    brand: '#3A6EA5',
-    dark: '#001021'
+    light: '#F2F4F3',
+    brand: '#1E3888',
+    dark: '#000500'
 };
 
 export default colors;

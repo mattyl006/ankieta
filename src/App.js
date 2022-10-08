@@ -4,13 +4,13 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import NextPage from "./pages/NextPage";
 import StartPage from "./pages/StartPage";
-import NavBar from "./components/elements/NavBar";
+// import NavBar from "./components/elements/NavBar";
 
 const App = () => {
   return (
       <BrowserRouter>
         <ThemeProvider theme={theme}>
-          <NavBar />
+          {/* <NavBar /> */}
           <Routes>
             <Route path='/next-page' element={<NextPage/>}/>
             <Route exact path='/' element={<StartPage/>}/>
