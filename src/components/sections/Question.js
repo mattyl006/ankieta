@@ -13,15 +13,15 @@ const Question = (props) => {
                 {props.options.map((option) => {
                     return (
                     <FlexRow key={option.id} gap='20px'>
-                        <FlexRow width={props.type === 'number' ? '60px' : '20px'} 
-                                 order={props.type === 'number' ? 2 : 0} 
-                                 height={props.type === 'number' ? '32px' : '20px'}
-                                 padding={props.type === 'number' ? '8px' : '0'}
-                                 id={option.id} name={option.name} backgroundColor={'#fff'}
-                                 border={`1px solid ${theme.colors.dark}`} 
-                                 margin={props.type === 'number' ? '2px 0 0 0' : '0'} 
-                                 as='input' type={props.type} 
-                                 onChange={(e) => props.updateState(e)}/>
+                        <FlexRow width={props.type === 'number' || props.type === 'text' ? '120px' : '20px'} 
+                            order={props.type === 'number' || props.type === 'text' ? 2 : 0} 
+                            height={props.type === 'number' || props.type === 'text' ? '32px' : '20px'}
+                            padding={props.type === 'number' || props.type === 'text' ? '8px' : '0'}
+                            id={option.id} name={option.name} backgroundColor={'#fff'} borderRadius='4px'
+                            border={`1px solid ${theme.colors.dark}`} color={theme.colors.dark}
+                            margin={props.type === 'number' || props.type === 'text' ? '2px 0 0 0' : '0'} 
+                            as='input' type={props.type} 
+                            onChange={(e) => props.updateState(e)}/>
                         <Body id={option.id} htmlFor={option.id} as='label'>
                             {option.text}
                         </Body>
