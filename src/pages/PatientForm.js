@@ -4,12 +4,6 @@ import {H1, H2, Body, Medium} from "../utils/fonts";
 import {FlexColumn, FlexRow} from "../utils/containers";
 
 const PatientForm = (props) => {
-    React.useEffect(() => {
-        setTimeout(() => {
-            window.location.reload()
-        }, 3000);
-    });
-
     return (
         <FlexColumn width='100%' gap='36px'>
             <H1 as='h1' color={theme.colors.brand}>
