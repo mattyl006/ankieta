@@ -16,6 +16,7 @@ const App = () => {
             <Route path='/next-page' element={<NextPage/>}/>
             <Route exact path='/' element={<StartPage/>}/>
             <Route path="/patients-list" element={<PatientsList/>} />
+            <Route path="/patients-list" element={<PatientsList/>} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

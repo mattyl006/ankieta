@@ -6,7 +6,7 @@ import Question from '../components/sections/Question';
 import PatientForm from './PatientForm';
 
 const StartPage = () => {
-    const [finish, setFinish] = React.useState(false);
+    const [doctorView, setDoctorView] = React.useState(false);
     const [formState, setFormState] = React.useState({
         userId: '',
         name: '',
@@ -55,11 +55,11 @@ const StartPage = () => {
     async function sendAnswers() {
         let result = await postData('http://127.0.0.1:8000/model', formState);
         console.log(result);
-        setFinish(true);
+        setDoctorView(result);
     }
     return (
         <>
-            <FlexColumn width='100%' gap='36px' display={finish ? 'none' : 'flex'}>
+            <FlexColumn width='100%' gap='36px' display={doctorView ? 'none' : 'flex'}>
                 {/* <H1 as='h1' color={theme.colors.brand}>
                     Ankieta dla pacjenta
                 </H1> */}
@@ -151,7 +151,7 @@ const StartPage = () => {
                     Prześlij
                 </FlexRow>
             </FlexColumn>
-            {finish ? <PatientForm /> : ''}
+            {doctorView ? <PatientForm data={doctorView}/> : ''}
         </>
     );
 };
