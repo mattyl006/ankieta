@@ -4,9 +4,7 @@ import {H1, H2, Body, Medium} from "../utils/fonts";
 import {FlexColumn, FlexRow} from "../utils/containers";
 import { useParams } from 'react-router-dom';
 
-const FilledForm = (props) => {
-
-
+const FilledForm = () => {
     const formId = useParams().id
     const [form, setForm] = React.useState(null);
 
@@ -31,9 +29,7 @@ const FilledForm = (props) => {
     async function getList() {
         let result = await getData('http://127.0.0.1:8000/list', {"uuid": formId});
         setForm(result)
-        debugger
     }
-
 
     useEffect(() => {
         getList()
@@ -42,13 +38,10 @@ const FilledForm = (props) => {
     return (
         <FlexColumn width='100%' gap='36px'>
             <H1 as='h1' color={theme.colors.brand}>
-                Ankieta pacjenta
+                Ankieta {formId}
             </H1>
-            <Medium>
-                Ankieta przesłana, dziękujemy za jej wypełnienie
-            </Medium>
-            {/* <FlexColumn width='' alignmentX='flex-start'>
-                {Object.entries(props.data).map((elem, index) => {
+            {form ? <FlexColumn alignmentX='flex-start' gap='36px'>
+                {Object.entries(form).map((elem, index) => {
                     if (elem[0] !== 'result') {
                         return (
                             <FlexRow key={index}>
@@ -62,7 +55,7 @@ const FilledForm = (props) => {
                         )
                     }
                 })}
-            </FlexColumn> */}
+            </FlexColumn> : ''}
         </FlexColumn>
     );
 };
