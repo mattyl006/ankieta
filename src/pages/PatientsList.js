@@ -3,6 +3,7 @@ import theme from "../utils/theme";
 import {H1, H2, Body} from "../utils/fonts";
 import {FlexColumn, FlexRow} from "../utils/containers";
 import { Link } from 'react-router-dom'
+import { link_backend } from './link';
 
 
 const PatientsList = () => {
@@ -28,7 +29,7 @@ const PatientsList = () => {
         return response.json(); // parses JSON response into native JavaScript objects
     }
     async function getList() {
-        let result = await getData('http://127.0.0.1:8000/list');
+        let result = await getData(link_backend + '/list');
         setList(result)
     }
 
@@ -61,7 +62,7 @@ const PatientsList = () => {
 
     async function delete_a(k) {
         debugger
-        let result = await delete_b('http://127.0.0.1:8000/list', {"uuid": k});
+        let result = await delete_b(link_backend+ '/list', {"uuid": k});
         setList(result)
     }
 
@@ -69,6 +70,19 @@ const PatientsList = () => {
         delete_a(k)
     }
 
+    const aa_xd = (liczba) => {
+        debugger
+        if (liczba >= 0.4){
+            return (<p style={{color: 'red'}}>Stan zagrażający</p>)
+        }
+        if (liczba >= 0.2){
+            return (<p style={{color: 'orange'}}>Możliwy stan zagrażający</p>)
+        }
+        if (liczba >= 0) {
+            return (<p style={{color: 'green'}}>Stan niezagrażający</p>)
+        }
+        return null
+    }
 
     const renderList = () => {
         if (list){
@@ -82,7 +96,8 @@ const PatientsList = () => {
                         </td>
                     <td style={{paddingRight: '35px'}}>{list[key]["name"]}</td>
                     <td style={{paddingRight: '35px'}}>{list[key]["surname"]}</td>
-                    <td style={{paddingRight: '35px'}}>{list[key]["result"][0] ? "Stan niezagrażający" : "Stan zagrażający"}</td>
+                    <td style={{paddingRight: '35px'}}>{aa_xd(list[key]["result"][1][0][1])}
+                    </td>
                     <td><a href="#" onClick={() => deleteRow(key)}>Archiwizuj</a></td>
                 </tr>
                 )

@@ -3,16 +3,33 @@ import theme from "../utils/theme";
 import {H1, H2, Body, Medium} from "../utils/fonts";
 import {FlexColumn, FlexRow, Grid} from "../utils/containers";
 import { useParams } from 'react-router-dom';
-
+import { link_backend } from './link';
 const FilledForm = () => {
     const formId = useParams().id
     const [form, setForm] = React.useState(null);
 
+    const aa_xd = (liczba) => {
+        debugger
+        if (liczba >= 0.4){
+            return (<p style={{color: 'red'}}>Stan zagrażający</p>)
+        }
+        if (liczba >= 0.2){
+            return (<p style={{color: 'orange'}}>Możliwy stan zagrażający</p>)
+        }
+        if (liczba >= 0) {
+            return (<p style={{color: 'green'}}>Stan niezagrażający</p>)
+        }
+        return null
+    }
+
     const returnResult = () => {
         if (form) {
-            if (form.result[0])
-                return 'Stan zagrażający';
-            else return 'Stan niezagrażający';
+
+            return (
+            <>
+                {aa_xd(form.result[1][0][1])}
+            </>
+            )
         }
     }
 
@@ -40,13 +57,13 @@ const FilledForm = () => {
             case 'weight':
               return 'Waga: ';
             case 'height':
-              return 'Wysokość: ';
+              return 'Wzrost: ';
             case 'isMale':
               return 'Płeć: '; 
             case 'hypertension':
                 return 'Nadciśnienie: ';
             case 'heart_disease':
-                return 'Chorowanie na serce: ';
+                return 'Choroba serca: ';
             case 'is_urban':
                 return 'Mieszka w mieście: ';
             case 'ever_married':
@@ -77,30 +94,96 @@ const FilledForm = () => {
         return response.json(); // parses JSON response into native JavaScript objects
     }
     async function getList() {
-        let result = await getData('http://127.0.0.1:8000/list', {"uuid": formId});
+        let result = await getData(link_backend + '/list', {"uuid": formId});
         setForm(result)
     }
 
     useEffect(() => {
         getList()
     }, [])
+
+
+    const render_xd = (elem) => {
+        if (elem[0] == 'height' ) {
+            return (
+                <>
+                    <Medium>
+                        {attributeFormat(elem[0])}&nbsp;
+                    </Medium>
+                    <Body>
+                        {elem[1].toString() + ' cm'}
+                    </Body>
+                </>
+            )
+
+        }
+        if (elem[0] == 'weight' ) {
+            return (
+                <>
+                    <Medium>
+                        {attributeFormat(elem[0])}&nbsp;
+                    </Medium>
+                    <Body>
+                        {elem[1].toString() + ' kg'}
+                    </Body>
+                </>
+            )
+
+        }
+
+        if (elem[0] == 'avg_glucose_level' ) {
+            return (
+                <>
+                    <Medium>
+                        {attributeFormat(elem[0])}&nbsp;
+                    </Medium>
+                    <Body>
+                        {elem[1] == 0 ? "Nie wypełniono" : elem[1].toString() + ' mg'}
+                    </Body>
+                </>
+            )
+
+        }
+
+        if (elem[0] == 'isMale') {
+            return (
+                <>
+                    <Medium>
+                        {attributeFormat(elem[0])}&nbsp;
+                    </Medium>
+                    <Body>
+                        {elem[1] == 0 ? 'Kobieta' : 'Mężczyzna'}
+                    </Body>
+                </>
+            )
+
+        }
+
+        return (
+            <>
+                <Medium>
+                    {attributeFormat(elem[0])}&nbsp;
+                </Medium>
+                <Body>
+                    {inputValueFormat(elem[1])}
+                </Body>
+            </>
+        )
+
+    }
  
     return (
         <FlexColumn width='100%' gap='36px'>
             <H1 as='h1' color={theme.colors.brand}>
-                Pacjent {form ? form.name : ''} {form ? form.surname : ''}
+                Pacjent: {form ? form.name : ''} {form ? form.surname : ''}
             </H1>
             {form ? <FlexColumn alignmentX='flex-start' gap='36px'>
                 {Object.entries(form).map((elem, index) => {
                     if (elem[0] !== 'result') {
                         return (
                             <FlexRow key={index} alignmentX='flex-start'>
-                                <Medium>
-                                    {attributeFormat(elem[0])}&nbsp;
-                                </Medium>
-                                <Body>
-                                    {inputValueFormat(elem[1])}
-                                </Body>
+                                {render_xd(elem)}
+
                             </FlexRow>
                         )
                     }

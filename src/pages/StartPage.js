@@ -4,6 +4,7 @@ import {FlexColumn, FlexRow} from "../utils/containers";
 import theme from "../utils/theme";
 import Question from '../components/sections/Question';
 import PatientForm from './PatientForm';
+import { link_backend } from './link';
 
 const StartPage = () => {
     const [doctorView, setDoctorView] = React.useState(false);
@@ -53,7 +54,7 @@ const StartPage = () => {
         return response.json(); // parses JSON response into native JavaScript objects
     }
     async function sendAnswers() {
-        let result = await postData('http://127.0.0.1:8000/model', formState);
+        let result = await postData(link_backend + '/model', formState);
         console.log(result);
         setDoctorView(result);
     }
@@ -89,7 +90,7 @@ const StartPage = () => {
                         Wybierz jedną odpowiedź
                     </H2>
                     <Question type='radio' updateState={updateState}
-                        title='4. Płeć' 
+                        title='4. Wybierz płeć' 
                         options={[
                             {text: 'Kobieta', id: 'isMale1', name: 'isMale'},
                             {text: 'Mężczyzna', id: 'isMale2', name: 'isMale'},
@@ -101,19 +102,19 @@ const StartPage = () => {
                             {text: 'Tak', id: 'ever_married2', name: 'ever_married'},
                         ]} />
                     <Question type='radio' updateState={updateState}
-                        title='6. Czy chorował/a Pan/Pani na serce?' 
+                        title='6. Czy chorowałeś/aś na serce?' 
                         options={[
                             {text: 'Nie', id: 'heart_disease1', name: 'heart_disease'},
                             {text: 'Tak', id: 'heart_disease2', name: 'heart_disease'},
                         ]} />
                     <Question type='radio' updateState={updateState}
-                        title='7. Nadciśnienie' 
+                        title='7. Czy masz problemy z nadciśnieniem' 
                         options={[
                             {text: 'Nie', id: 'hypertension1', name: 'hypertension'},
                             {text: 'Tak', id: 'hypertension2', name: 'hypertension'},
                         ]} />
                     <Question type='radio' updateState={updateState}
-                        title='8. Miejsce zamieszkania' 
+                        title='8. Wybierz typ zamieszkaia' 
                         options={[
                             {text: 'Wieś', id: 'is_urban1', name: 'is_urban'},
                             {text: 'Miasto', id: 'is_urban2', name: 'is_urban'},
@@ -124,22 +125,22 @@ const StartPage = () => {
                         Wpisz poprawną odpowiedź
                     </H2>
                     <Question type='number' updateState={updateState}
-                        title='9. Ile masz lat?' 
+                        title='9. Podaj swój wiek?' 
                         options={[
                             {text: 'Wiek:', id: 'age', name: 'age'},
                     ]} />
                     <Question type='number' updateState={updateState}
-                        title='10. Podaj swoją wagę' 
+                        title='10. Podaj swoją wagę (w kilogramach)' 
                         options={[
                             {text: 'Waga:', id: 'weight', name: 'weight'},
                     ]} />
                     <Question type='number' updateState={updateState}
-                        title='11. Podaj swój wzrost' 
+                        title='11. Podaj swój wzrost (w centymetrach)' 
                         options={[
                             {text: 'Wzrost:', id: 'height', name: 'height'},
                     ]} />
                     <Question type='number' updateState={updateState}
-                        title='12. Średni poziom cukru we krwi' 
+                        title='12. Średni poziom cukru we krwi w mg (pole opcjonalne)' 
                         options={[
                             {text: 'Poziom cukru:', id: 'avg_glucose_level', 
                                 name: 'avg_glucose_level'},

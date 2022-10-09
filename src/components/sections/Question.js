@@ -6,7 +6,7 @@ import theme from "../../utils/theme";
 const Question = (props) => {
     return (
         <FlexColumn gap='44px' alignmentX='flex-start'>
-            <H3>
+            <H3  maxWidth='490px'>
                 {props.title}
             </H3>
             <FlexColumn gap='24px' alignmentX='flex-start'>
