@@ -1,12 +1,62 @@
 import React, { useEffect } from 'react';
 import theme from "../utils/theme";
 import {H1, H2, Body, Medium} from "../utils/fonts";
-import {FlexColumn, FlexRow} from "../utils/containers";
+import {FlexColumn, FlexRow, Grid} from "../utils/containers";
 import { useParams } from 'react-router-dom';
 
 const FilledForm = () => {
     const formId = useParams().id
     const [form, setForm] = React.useState(null);
+
+    const returnResult = () => {
+        if (form) {
+            if (form.result[0])
+                return 'Stan zagrażający';
+            else return 'Stan niezagrażający';
+        }
+    }
+
+    const inputValueFormat = (input) => {
+        switch (input) {
+            case 0:
+                return 'Nie';
+            case 1:
+                return 'Tak';
+            default:
+              return input;
+        }
+    }
+
+    const attributeFormat = (input) => {
+        switch (input) {
+            case 'userId':
+                return 'Numer pacjenta: ';
+            case 'name':
+                return 'Imię: ';
+            case 'surname':
+              return 'Nazwisko: ';
+            case 'age':
+              return 'Wiek: ';
+            case 'weight':
+              return 'Waga: ';
+            case 'height':
+              return 'Wysokość: ';
+            case 'isMale':
+              return 'Płeć: '; 
+            case 'hypertension':
+                return 'Nadciśnienie: ';
+            case 'heart_disease':
+                return 'Chorowanie na serce: ';
+            case 'is_urban':
+                return 'Mieszka w mieście: ';
+            case 'ever_married':
+                return 'Żonaty: ';
+            case 'avg_glucose_level':
+                return 'Poziom cukru we krwi: ';
+            default:
+              console.log(`Sorry, we are out of cases`);
+        }
+    }
 
     // Example POST method implementation:
     async function getData(url = '', body) {
@@ -38,24 +88,32 @@ const FilledForm = () => {
     return (
         <FlexColumn width='100%' gap='36px'>
             <H1 as='h1' color={theme.colors.brand}>
-                Ankieta {formId}
+                Pacjent {form ? form.name : ''} {form ? form.surname : ''}
             </H1>
             {form ? <FlexColumn alignmentX='flex-start' gap='36px'>
                 {Object.entries(form).map((elem, index) => {
                     if (elem[0] !== 'result') {
                         return (
-                            <FlexRow key={index}>
+                            <FlexRow key={index} alignmentX='flex-start'>
                                 <Medium>
-                                    {elem[0]}:
+                                    {attributeFormat(elem[0])}&nbsp;
                                 </Medium>
                                 <Body>
-                                    {elem[1]}
+                                    {inputValueFormat(elem[1])}
                                 </Body>
                             </FlexRow>
                         )
                     }
                 })}
             </FlexColumn> : ''}
+            <FlexRow alignmentX='flex-start'>
+                <Medium>
+                    Wstępna diagnoza:&nbsp;
+                </Medium>
+                <Medium>
+                    {returnResult()}
+                </Medium>
+            </FlexRow>
         </FlexColumn>
     );
 };
