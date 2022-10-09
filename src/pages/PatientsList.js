@@ -36,10 +36,43 @@ const PatientsList = () => {
         getList()        
     }, [])
 
+
+
+    // Example POST method implementation:
+    async function delete_b(url, body) {
+        // Default options are marked with *
+        const response = await fetch(url, {
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(body) // body data type must match "Content-Type" header    
+    });
+        return response.json(); // parses JSON response into native JavaScript objects
+    }
+
+
+
+    async function delete_a(k) {
+        debugger
+        let result = await delete_b('http://127.0.0.1:8000/list', {"uuid": k});
+        setList(result)
+    }
+
+    const deleteRow = (k) => {
+        delete_a(k)
+    }
+
+
     const renderList = () => {
         if (list){
             return Object.keys(list).map(function(key, index) {
-                debugger
                 return (
                 <tr>
                     <td style={{paddingRight: '35px'}}>
@@ -49,6 +82,7 @@ const PatientsList = () => {
                         </td>
                     <td>{list[key]["name"]}</td>
                     <td>{list[key]["surname"]}</td>
+                    <td><a href="#" onClick={() => deleteRow(key)}>Archiwizuj</a></td>
                 </tr>
                 )
               });
@@ -66,6 +100,7 @@ const PatientsList = () => {
                     <th style={{paddingRight: '35px'}}>Numer w kolejce</th>
                     <th>Imię</th>
                     <th>Nazwisko</th>
+                    {/* <th>Archiwizuj</th> */}
                 </tr>
                 {renderList()}
             </table>
