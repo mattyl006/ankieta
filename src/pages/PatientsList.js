@@ -80,8 +80,9 @@ const PatientsList = () => {
                          {list[key]["userId"]} 
                          </Link>
                         </td>
-                    <td>{list[key]["name"]}</td>
-                    <td>{list[key]["surname"]}</td>
+                    <td style={{paddingRight: '35px'}}>{list[key]["name"]}</td>
+                    <td style={{paddingRight: '35px'}}>{list[key]["surname"]}</td>
+                    <td style={{paddingRight: '35px'}}>{list[key]["result"][0] ? "Stan niezagrażający" : "Stan zagrażający"}</td>
                     <td><a href="#" onClick={() => deleteRow(key)}>Archiwizuj</a></td>
                 </tr>
                 )
@@ -98,8 +99,9 @@ const PatientsList = () => {
             <table>
                 <tr>
                     <th style={{paddingRight: '35px'}}>Numer w kolejce</th>
-                    <th>Imię</th>
-                    <th>Nazwisko</th>
+                    <th style={{paddingRight: '35px'}}>Imię</th>
+                    <th style={{paddingRight: '35px'}}>Nazwisko</th>
+                    <th style={{paddingRight: '35px'}}>Wstępna diagnoza</th>
                     {/* <th>Archiwizuj</th> */}
                 </tr>
                 {renderList()}
